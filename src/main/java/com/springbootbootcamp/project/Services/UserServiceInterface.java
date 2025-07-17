@@ -3,8 +3,6 @@ package com.springbootbootcamp.project.Services;
 
 import com.springbootbootcamp.project.DTO.PaginationDTO;
 import com.springbootbootcamp.project.Models.UserModel;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

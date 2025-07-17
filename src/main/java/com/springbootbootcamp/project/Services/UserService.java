@@ -6,13 +6,8 @@ import com.springbootbootcamp.project.Models.UserModel;
 import com.springbootbootcamp.project.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class UserService implements UserServiceInterface {
@@ -35,7 +30,6 @@ public class UserService implements UserServiceInterface {
         userFromDB.setProfession(user.getProfession());
         userRepository.save(userFromDB);
         return "User updated successfully!";
-//        return "User with _id: " + _id + " not found!";
     }
 
     public UserModel addUser(UserModel user){
