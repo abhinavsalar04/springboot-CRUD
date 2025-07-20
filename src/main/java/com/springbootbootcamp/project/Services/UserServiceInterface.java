@@ -2,20 +2,20 @@ package com.springbootbootcamp.project.Services;
 
 
 import com.springbootbootcamp.project.DTO.PaginationDTO;
-import com.springbootbootcamp.project.Models.UserModel;
+import com.springbootbootcamp.project.Models.User;
 
 import java.util.List;
 
 public interface UserServiceInterface {
 
-    public PaginationDTO<UserModel> getUsers(Integer limit, Integer offset, String searchParam);
+    public PaginationDTO<User> getUsers(Integer limit, Integer offset, String searchParam);
 
-    public UserModel getUserById(Integer _id);
+    public User getUserById(Integer _id);
 
-    public UserModel addUser(UserModel user);
+    public User addUser(User user);
 
-    public List<UserModel> bulkAddUsers(List<UserModel> users);
+    public List<User> bulkAddUsers(List<User> users);
 
-    public String updateUser(Integer _id, UserModel user);
+    public String updateUser(Integer _id, User user);
 
 }

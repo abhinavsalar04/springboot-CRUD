@@ -1,7 +1,9 @@
 package com.springbootbootcamp.project.Controllers;
 
 import com.springbootbootcamp.project.DTO.PaginationDTO;
-import com.springbootbootcamp.project.Models.UserModel;
+import com.springbootbootcamp.project.Models.Asset;
+import com.springbootbootcamp.project.Models.User;
+import com.springbootbootcamp.project.Repositories.AssetRepository;
 import com.springbootbootcamp.project.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +16,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AssetRepository assetRepository;
+
     @GetMapping
-    public PaginationDTO<UserModel> getUsers(
+    public PaginationDTO<User> getUsers(
             @RequestParam(required = false, defaultValue = "10") int limit,
             @RequestParam(required = false, defaultValue = "0") int offset,
             @RequestParam(required = false, defaultValue = "") String searchParam) {
@@ -23,22 +28,26 @@ public class UserController {
     }
 
     @GetMapping("{_id}")
-    public UserModel getUserById(@PathVariable int _id) {
+    public User getUserById(@PathVariable int _id) {
         return userService.getUserById(_id);
     }
 
     @PutMapping("{_id}")
-    public String updateUser(@PathVariable int _id, @RequestBody UserModel user) {
+    public String updateUser(@PathVariable int _id, @RequestBody User user) {
         return userService.updateUser(_id, user);
     }
 
     @PostMapping
-    public UserModel addUser(@RequestBody UserModel user) {
+    public User addUser(@RequestBody User user) {
+        Asset asset = user.getAsset();
+        if(asset != null){
+            assetRepository.save(asset);
+        }
         return userService.addUser(user);
     }
 
     @PostMapping("/bulk")
-    public List<UserModel> bulkAddUsers(@RequestBody List<UserModel> users) {
+    public List<User> bulkAddUsers(@RequestBody List<User> users) {
         return userService.bulkAddUsers(users);
     }
 

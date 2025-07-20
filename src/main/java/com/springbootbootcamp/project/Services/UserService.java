@@ -2,7 +2,8 @@ package com.springbootbootcamp.project.Services;
 
 import com.springbootbootcamp.project.DTO.PaginationDTO;
 import com.springbootbootcamp.project.Mapper.PaginationMapper;
-import com.springbootbootcamp.project.Models.UserModel;
+import com.springbootbootcamp.project.Models.User;
+import com.springbootbootcamp.project.Repositories.AssetRepository;
 import com.springbootbootcamp.project.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,29 +15,36 @@ public class UserService implements UserServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
-    public PaginationDTO<UserModel> getUsers(Integer limit, Integer offset, String searchParam){
-        List<UserModel> users = userRepository.getUsersByLimitOffsetAndSearchParam(limit, offset, searchParam);
-        PaginationMapper<UserModel> mappedData = new PaginationMapper<>();
+    @Autowired
+    private AssetRepository assetRepository;
+
+    public PaginationDTO<User> getUsers(Integer limit, Integer offset, String searchParam){
+        List<User> users = userRepository.getUsersByLimitOffsetAndSearchParam(limit, offset, searchParam);
+        PaginationMapper<User> mappedData = new PaginationMapper<>();
         return mappedData.getMappedData(users, users.size(), userRepository.findAll().size());
     }
 
-    public UserModel getUserById(Integer _id){
+    public User getUserById(Integer _id){
         return userRepository.findById(_id).get();
     }
 
-    public String updateUser(Integer _id, UserModel user){
-        UserModel userFromDB = userRepository.findById(_id).get();
+    public String updateUser(Integer _id, User user){
+        User userFromDB = userRepository.findById(_id).get();
         userFromDB.setName(user.getName());
         userFromDB.setProfession(user.getProfession());
         userRepository.save(userFromDB);
         return "User updated successfully!";
     }
 
-    public UserModel addUser(UserModel user){
+    public User addUser(User user){
+        /*Asset asset = user.getAsset();
+        if(asset != null ){
+            assetRepository.save(asset);
+        }*/
         return userRepository.save(user);
     }
 
-    public List<UserModel> bulkAddUsers(List<UserModel> users){
+    public List<User> bulkAddUsers(List<User> users){
         return userRepository.saveAll(users);
     }
 }

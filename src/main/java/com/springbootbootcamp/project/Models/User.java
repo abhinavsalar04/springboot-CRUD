@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class UserModel {
+public class User {
     @Id
     @Column(name = "_id")
     @GeneratedValue
@@ -17,8 +17,12 @@ public class UserModel {
     @Column(name = "profession")
     private String profession;
 
-    public UserModel(){}
-    public UserModel(int _id, String name, String profession){
+    @OneToOne
+    @JoinColumn(name = "asset_id")
+    private Asset asset;
+
+    public User(){}
+    public User(int _id, String name, String profession){
         this._id = _id;
         this.name = name;
         this.profession = profession;
@@ -27,12 +31,17 @@ public class UserModel {
     public int get_id(){
         return this._id;
     }
+
     public String getName(){
         return this.name;
     }
 
     public String getProfession(){
         return this.profession;
+    }
+
+    public Asset getAsset(){
+        return this.asset;
     }
 
     public void setName(String name){
@@ -43,8 +52,7 @@ public class UserModel {
         this.profession = profession;
     }
 
-    public void setProfession(String name, String profession){
-        this.name = name;
-        this.profession = profession;
+    public void setAsset(Asset asset){
+        this.asset = asset;
     }
 }
