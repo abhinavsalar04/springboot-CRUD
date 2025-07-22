@@ -27,14 +27,14 @@ public class UserController {
         return userService.getUsers(limit, offset, searchParam);
     }
 
-    @GetMapping("{_id}")
-    public User getUserById(@PathVariable int _id) {
-        return userService.getUserById(_id);
+    @GetMapping("{userId}")
+    public User getUserById(@PathVariable int userId) {
+        return userService.getUserById(userId);
     }
 
-    @PutMapping("{_id}")
-    public String updateUser(@PathVariable int _id, @RequestBody User user) {
-        return userService.updateUser(_id, user);
+    @PutMapping("{userId}")
+    public String updateUser(@PathVariable int userId, @RequestBody User user) {
+        return userService.updateUser(userId, user);
     }
 
     @PostMapping

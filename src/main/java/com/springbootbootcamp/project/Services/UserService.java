@@ -24,12 +24,12 @@ public class UserService implements UserServiceInterface {
         return mappedData.getMappedData(users, users.size(), userRepository.findAll().size());
     }
 
-    public User getUserById(Integer _id){
-        return userRepository.findById(_id).get();
+    public User getUserById(Integer userId){
+        return userRepository.findById(userId).get();
     }
 
-    public String updateUser(Integer _id, User user){
-        User userFromDB = userRepository.findById(_id).get();
+    public String updateUser(Integer userId, User user){
+        User userFromDB = userRepository.findById(userId).get();
         userFromDB.setName(user.getName());
         userFromDB.setProfession(user.getProfession());
         userRepository.save(userFromDB);

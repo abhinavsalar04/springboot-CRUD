@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query(value = "SELECT * FROM users u WHERE LOWER(u.name) LIKE LOWER(CONCAT('%', :searchParam, '%')) OR LOWER(u.profession) LIKE LOWER(CONCAT('%', :searchParam, '%')) LIMIT :records OFFSET :offset", nativeQuery = true)
+    @Query(value = "SELECT * FROM users u WHERE LOWER(u.user_name) LIKE LOWER(CONCAT('%', :searchParam, '%')) OR LOWER(u.user_profession) LIKE LOWER(CONCAT('%', :searchParam, '%')) LIMIT :records OFFSET :offset", nativeQuery = true)
     List<User> getUsersByLimitOffsetAndSearchParam(@Param("records") int records, @Param("offset") int offset, @Param("searchParam") String searchParam);
 }

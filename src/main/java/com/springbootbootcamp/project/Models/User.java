@@ -7,18 +7,18 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "_id")
+    @Column(name = "user_id")
     @GeneratedValue
     private int _id;
 
-    @Column(name = "name")
+    @Column(name = "user_name")
     private String name;
 
-    @Column(name = "profession")
+    @Column(name = "user_profession")
     private String profession;
 
     @OneToOne
-    @JoinColumn(name = "asset_id")
+    @JoinColumn(name = "asset_id_fk", referencedColumnName = "asset_id")
     private Asset asset;
 
     public User(){}
