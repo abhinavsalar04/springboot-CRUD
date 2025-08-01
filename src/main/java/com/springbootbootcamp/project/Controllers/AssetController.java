@@ -1,9 +1,8 @@
 package com.springbootbootcamp.project.Controllers;
 
 import com.springbootbootcamp.project.Models.Asset;
-import com.springbootbootcamp.project.Services.AssetService;
+import com.springbootbootcamp.project.Services.implementation.AssetServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/v1/asset")
 public class AssetController {
     @Autowired
-    private AssetService assetService;
+    private AssetServiceImplementation assetService;
 
     @PostMapping
     public Asset addAsset(@RequestBody Asset asset){

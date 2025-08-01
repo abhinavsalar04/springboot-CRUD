@@ -1,16 +1,17 @@
-package com.springbootbootcamp.project.Services;
+package com.springbootbootcamp.project.Services.implementation;
 
 import com.springbootbootcamp.project.Models.Asset;
 import com.springbootbootcamp.project.Models.User;
 import com.springbootbootcamp.project.Repositories.AssetRepository;
 import com.springbootbootcamp.project.Repositories.UserRepository;
+import com.springbootbootcamp.project.Services.interfaces.AssetServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AssetService {
+public class AssetServiceImplementation implements AssetServiceInterface {
     @Autowired
     private AssetRepository assetRepository;
 
@@ -25,8 +26,8 @@ public class AssetService {
         return assetRepository.findAll();
     }
 
-    public Asset getAssetById(int asset_id){
-        return assetRepository.findById(asset_id).get();
+    public Asset getAssetById(int assetId){
+        return assetRepository.findById(assetId).get();
     }
 
     public String assignAssetToUser(int assetId, int userId){

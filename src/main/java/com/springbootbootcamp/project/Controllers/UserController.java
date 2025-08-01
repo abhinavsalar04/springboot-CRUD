@@ -4,8 +4,9 @@ import com.springbootbootcamp.project.DTO.PaginationDTO;
 import com.springbootbootcamp.project.Models.Asset;
 import com.springbootbootcamp.project.Models.User;
 import com.springbootbootcamp.project.Repositories.AssetRepository;
-import com.springbootbootcamp.project.Services.UserService;
+import com.springbootbootcamp.project.Services.implementation.UserServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/v1/user")
 public class UserController {
     @Autowired
-    UserService userService;
+    UserServiceImplementation userService;
 
     @Autowired
     AssetRepository assetRepository;
@@ -28,12 +29,12 @@ public class UserController {
     }
 
     @GetMapping("{userId}")
-    public User getUserById(@PathVariable int userId) {
+    public ResponseEntity<User> getUserById(@PathVariable int userId) {
         return userService.getUserById(userId);
     }
 
     @PutMapping("{userId}")
-    public String updateUser(@PathVariable int userId, @RequestBody User user) {
+    public ResponseEntity<String> updateUser(@PathVariable int userId, @RequestBody User user) {
         return userService.updateUser(userId, user);
     }
 

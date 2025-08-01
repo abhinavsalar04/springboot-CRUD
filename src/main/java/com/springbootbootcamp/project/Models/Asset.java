@@ -43,12 +43,4 @@ public class Asset {
     public void setName(String name) {
         this.name = name;
     }
-
-    /*public UserModel getUser() {
-        return this.user;
-    }
-
-    public void setUser(UserModel user) {
-        this.user = user;
-    }*/
 }
